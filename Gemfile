@@ -16,3 +16,6 @@ gem 'rabl'
 # json parser
 gem 'oj'
 
+# styling
+gem 'bootstrap-sass'
+
