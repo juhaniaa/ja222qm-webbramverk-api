@@ -19,3 +19,6 @@ gem 'oj'
 # styling
 gem 'bootstrap-sass'
 
+# secure password
+gem 'bcrypt', '~> 3.1.9'
+

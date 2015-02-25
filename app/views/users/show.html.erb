@@ -1,0 +1,16 @@
+<% content_for :title, "user page" %>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h1>Welcome <%= @user.email %></h1>
+
+<% if @user.apikey.present? %>
+  <%= @user.apikey.key.to_s %>
+  <p><% @user.apikey  %></p>
+<%= link_to "Remove key", remove_key_path, class: "btn btn-danger" %>
+<% else %>
+  <p>No key</p>
+<%= link_to "Generate new key", add_key_path, class: "btn btn-success" %>
+<% end %>
+<%= link_to "Log out", logout_path, class: "btn btn-default" %>

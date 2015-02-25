@@ -1,13 +1,12 @@
 class SessionsController < ApplicationController
-  
-   # Inloggningsmetoder
-  def new
+
+  def new # show login-form    
   end
   
-  def create
+  def create # create new session for user
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
-      session[:userid] = @user.id
+      log_in @user # session helper
       redirect_to @user
     else
       flash[:notice] = "Login failed"
@@ -15,9 +14,8 @@ class SessionsController < ApplicationController
     end
   end
   
-  
   def destroy
-    session[:userid] = nil
+    log_out # session helper
     redirect_to root_path, notice: "Log out succesfull"
   end
 end

@@ -1,0 +1,27 @@
+<% content_for :title, "register user" %>
+
+<h1>Register new user</h1>
+
+<% if @user.errors.any? %>
+  <h2>Form errors:</h2>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user, :url => register_path do |u| %>
+  <p><%= u.label :email, "E-mail" %><br />
+  <%= u.email_field :email %></p>
+
+  <p><%= u.label :password, "Password" %><br />
+  <%= u.password_field :password %></p>
+  
+  <p><%= u.label :password_confirmation, "Confirm password" %><br />
+  <%= u.password_field :password_confirmation %></p>
+
+  <p><%= link_to "Go back", root_path, class: "btn btn-default" %>
+    <%= u.submit "Register user", class: "btn btn-success" %></p>
+<% end %>
+

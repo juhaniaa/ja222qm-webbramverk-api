@@ -1,10 +1,18 @@
+<% content_for :title, "home page" %>
+
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
 
 <h1>Welcome to Trophy</h1>
 
-<p>This is the main page for Trophy-api. From here you can 1) Create your developer account if you dont have one already 2) Login to your account and manage your api-keys 3) Read our awesome documentation that dosnt exist yet.</p>
+<p>This is the main page for Trophy-api. From here you can</p>
+<ul>
+  <li>1) Create your developer account if you dont have one already</li>
+  <li>2) Login to your account and manage your api-keys</li>
+  <li>3) Read our awesome documentation that dosnt exist yet</li>
+</ul>
+
 
 
 <%= link_to "Register", register_path, class: "btn btn-success" %>

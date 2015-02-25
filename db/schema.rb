@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223132846) do
+ActiveRecord::Schema.define(version: 20150225185121) do
 
   create_table "admins", force: true do |t|
     t.string   "email",           null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150223132846) do
 
   create_table "apikeys", force: true do |t|
     t.string   "key"
-    t.integer  "userid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

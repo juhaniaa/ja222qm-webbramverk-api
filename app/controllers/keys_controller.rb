@@ -3,29 +3,25 @@ class KeysController < ApplicationController
   
   def create 
     # get current user
-    # @user = User.find_by_id(session[:userid])
+    @user = current_user
     
     # give new apikey
+    @user.apikey = Apikey.create(key: SecureRandom.hex)
     
-    #if true
-     # flash[:notice] = "A new key has been generated"
-    #else
-    #  flash[:notice] = "There was a problem when generating your new key"
-    #end       
+    flash[:notice] = "A new key has been generated"
+    
     redirect_to @user
   end
   
   def destroy
     # get current user
-    # @user = User.find_by_id(session[:userid])
+    @user = current_user
     
     # remove apikey with current users id
+    @user.apikey = nil
     
-    #if @user.update_attribute(:apikey,nil)
-     # flash[:notice] = "Nyckeln togs bort"
-    #else
-    #  flash[:notice] = "Fel uppstod"
-    #end
+    flash[:notice] = "Your key has been removed"
+    
     redirect_to @user
   end
 end

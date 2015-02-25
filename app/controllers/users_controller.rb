@@ -1,5 +1,6 @@
 class UsersController < ApplicationController  
  # before_action :require_login, except: [:index, :new, :create, :login]
+  before_action :check_user, except: [:main, :new, :create]
   
   def main
     # if user is logged in, redirect to user-infopage
@@ -23,12 +24,13 @@ class UsersController < ApplicationController
     else
       # show registry form with errors
       render action: :new
+      # or? redirect_to register_path
     end
   end
 
   def show
-    # get current user
-    # @user = User.find(session[:userid])    
+    # get current user        
+    @user = current_user
     
     # check if correct user
   end 
