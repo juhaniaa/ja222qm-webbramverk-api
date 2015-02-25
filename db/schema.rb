@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204160854) do
+ActiveRecord::Schema.define(version: 20150223132846) do
+
+  create_table "admins", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "apikeys", force: true do |t|
+    t.string   "key"
+    t.integer  "userid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "description"
@@ -34,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150204160854) do
 
   create_table "tags", force: true do |t|
     t.string   "tagName"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "description"
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -13,13 +13,15 @@ Rails.application.routes.draw do
   end
   
   # Registration routes
-  root 'users#index'
+  root 'users#main'
   get 'register' => 'users#new' # show registry form
   post 'register' => 'users#create' # do register user
 	get 'login' => 'sessions#new' # show login form
   post 'login' => 'sessions#create' # do login user
-  get 'logout' => 'sessions#destroy' # do logout user
-	resources :users, only: [:index, :show]
-	resources :keys, only: [:create, :destroy]
+  get 'logout' => 'sessions#destroy' # do logout user - requires logged 
+  resources :users, only: [:show] # show specific user
+  post 'add_key' => 'keys#create' # add new api key
+  get 'remove_key' => 'keys#destroy' # remove api key
+  get 'docs' => 'docs#index' # main page of documentation
   
 end

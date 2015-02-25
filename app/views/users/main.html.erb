@@ -1,0 +1,12 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h1>Welcome to Trophy</h1>
+
+<p>This is the main page for Trophy-api. From here you can 1) Create your developer account if you dont have one already 2) Login to your account and manage your api-keys 3) Read our awesom documentation that dosnt exist yet.</p>
+
+
+<%= link_to "Register", register_path %>
+<%= link_to "Login", login_path %>4
+<%= link_to "Docs", docs_path %>
