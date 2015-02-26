@@ -1,12 +1,12 @@
-<% content_for :title, "login user" %>
+<% content_for :title, "login admin" %>
 
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
 
-<h1>Login user</h1>
+<h1>Login admin</h1>
 
-<%= form_tag(login_path, method: "post") do %>
+<%= form_tag(login_admin_path, method: "post") do %>
   <p><%= label_tag(:email, "E-mail:") %></p>
   <p><%= email_field_tag(:email) %></p>
 

@@ -17,3 +17,7 @@ u2.apikey = Apikey.create(key: SecureRandom.hex)
 u3.apikey = Apikey.create(key: SecureRandom.hex)
 u4.apikey = Apikey.create(key: SecureRandom.hex)
 u5.apikey = Apikey.create(key: SecureRandom.hex)
+
+Admin.create(email: "admin1@test.se", password: "qwe123")
+Admin.create(email: "admin2@test.se", password: "qwe123")
+Admin.create(email: "admin3@test.se", password: "qwe123")

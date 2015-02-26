@@ -24,4 +24,11 @@ Rails.application.routes.draw do
   get 'remove_key' => 'keys#destroy' # remove api key
   get 'docs' => 'docs#index' # main page of documentation
   
+  # Admin routes  
+  get 'login_admin' => 'sessions#new_admin' # show admin login-form
+  post 'login_admin' => 'sessions#create_admin' # do login admin
+  get 'logout_admin' => 'sessions#destroy_admin' # do logout admin - requires logged
+  resources :admins, only: [:show, :index] # show specific admin
+  
+  
 end
