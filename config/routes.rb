@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   post 'login_admin' => 'sessions#create_admin' # do login admin
   get 'logout_admin' => 'sessions#destroy_admin' # do logout admin - requires logged
   resources :admins, only: [:show, :index] # show specific admin
+  #get 'remove_key_by_admin' => 'keys#destroy_by_admin' # admin removes apikey
+  get  "keys/remove/:id" => "keys#destroy_by_admin", as: :remove_key_by_admin # admin removes a users apikey
   
   
 end

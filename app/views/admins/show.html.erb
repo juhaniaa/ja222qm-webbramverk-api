@@ -6,4 +6,11 @@
 
 <h1>Welcome <%= @admin.email %></h1>
 
+<ul>
+  <% @keys.each do |k| %>
+  
+  <li><%= k.key %> - <%= k.user_id %> <%= link_to "Remove key", remove_key_by_admin_path(k.user_id) %></li>
+  <% end %>
+</ul>
+
 <%= link_to "Log out", logout_admin_path, class: "btn btn-default" %>

@@ -1,4 +1,7 @@
 class KeysController < ApplicationController
+  before_action :check_admin, only: [:destroy_by_admin]
+  before_action :check_user, only: [:create, :destroy]
+  
   # Apinyckelsmetoder
   
   def create 
@@ -24,4 +27,12 @@ class KeysController < ApplicationController
     
     redirect_to @user
   end
+  
+  def destroy_by_admin
+    @user = User.find_by_id(params[:id])    
+    @user.apikey = nil
+    flash[:notice] = "The user's key has been removed"
+    redirect_to current_admin
+  end
+  
 end
