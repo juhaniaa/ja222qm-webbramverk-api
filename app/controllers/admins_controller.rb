@@ -11,3 +11,5 @@ class AdminsController < ApplicationController
     # check if correct user
   end 
 end
+
+
