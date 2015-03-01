@@ -42,6 +42,12 @@ module Api
         end
       end
       
+      def query     
+        query_param = '%' + params[:query] + '%'
+        @events = Event.where('description like ?', query_param).limit(@limit).offset(@offset)                
+        render(:file => 'api/v1/events/index.json.rabl')
+      end
+      
       
       def create
       end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       
       get 'events/nearby' => 'events#nearby' # get events close to a point, requires params :lat, :lng
-      #get 'events/query' => 'events#query' # get events on search
+      get 'events/query' => 'events#query' # get events on search
       
       resources :events        
       resources :tags do
