@@ -1,7 +1,8 @@
 module Api
-  module V1
-    class EventsController < ApplicationController # Api::BaseController
+  module V1    
+    class EventsController < ApiController # Api::BaseController
       before_filter :restrict_access
+      before_action :offset_params, only: [:index]
             
       def index # latest first
         if params[:tag_id].present?
@@ -11,13 +12,36 @@ module Api
           @hunter = Hunter.find(params[:hunter_id])
           @events = @hunter.events
         else
-          @events = Event.all.sort_by{ |a| a[:created_at] }.reverse
+          @events = Event.limit(@limit).offset(@offset).sort_by{ |a| a[:created_at] }.reverse
         end
-      end                  
+      end               
+      
       
       def show
         @event = Event.find(params[:id])
       end
+      
+      def nearby        
+        if params[:lng].present? && params[:lat].present?
+
+          # get all positions in range                   
+          @positions = Position.within(10, :origin => [params[:lat], params[:lng]])
+                  
+          # get events related to positions
+          @events = []
+          @positions.each do |position|
+            @events << position.event
+          end       
+          
+          #render @events
+          render(:file => 'api/v1/events/index.json.rabl')
+          
+        else
+          error = ErrorMessage.new("Could not find any resources. Bad parameters?", "Could not find any events!" )
+          render json: error, status: :bad_request
+        end
+      end
+      
       
       def create
       end
@@ -30,6 +54,13 @@ module Api
           Apikey.exists?(key: token)
         end
       end      
+    end
+    class ErrorMessage
+      def initialize(dev_mess, usr_mess)
+      # This is going to be json...camelcase
+      @developerMessage = dev_mess
+      @userMessage = usr_mess
+     end
     end
   end
 end

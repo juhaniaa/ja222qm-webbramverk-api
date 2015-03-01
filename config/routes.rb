@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   # API routes
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      
+      get 'events/nearby' => 'events#nearby' # get events close to a point, requires params :lat, :lng
+      #get 'events/query' => 'events#query' # get events on search
+      
       resources :events        
       resources :tags do
-        resources :events, only: [:index]
+        resources :events, only: [:index] # tags/1/events
       end
       resources :hunters do
-        resources :events, only: [:index]
+        resources :events, only: [:index] # hunters/1/events
       end
+  
     end
     #scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
       #resources :events

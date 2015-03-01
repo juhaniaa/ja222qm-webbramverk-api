@@ -1,3 +1,4 @@
 class Position < ActiveRecord::Base
-  belongs_to :event
+  acts_as_mappable :default_units => :kms
+  belongs_to :event  
 end

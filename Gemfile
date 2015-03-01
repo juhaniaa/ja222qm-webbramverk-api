@@ -22,3 +22,7 @@ gem 'bootstrap-sass'
 # secure password
 gem 'bcrypt', '~> 3.1.9'
 
+# positioning and distances geological
+gem 'geokit'
+gem 'geokit-rails'
+

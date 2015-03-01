@@ -1,4 +1,4 @@
-class Api::V1::TagsController < ApplicationController
+class Api::V1::TagsController < ApiController
   before_filter :restrict_access
       
   def index

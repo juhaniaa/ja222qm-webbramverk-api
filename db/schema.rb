@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227121558) do
+ActiveRecord::Schema.define(version: 20150301224942) do
 
   create_table "admins", force: true do |t|
     t.string   "email",           null: false
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150227121558) do
   end
 
   create_table "positions", force: true do |t|
-    t.decimal  "longitude",  precision: 10, scale: 6
-    t.decimal  "latitude",   precision: 10, scale: 6
+    t.decimal  "lng",        precision: 10, scale: 6
+    t.decimal  "lat",        precision: 10, scale: 6
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"

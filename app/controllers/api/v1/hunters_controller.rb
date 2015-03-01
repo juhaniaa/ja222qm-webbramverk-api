@@ -1,4 +1,4 @@
-class Api::V1::HuntersController < ApplicationController
+class Api::V1::HuntersController < ApiController
   before_filter :restrict_access
       
   def index
