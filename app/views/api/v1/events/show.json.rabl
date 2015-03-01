@@ -1,2 +1,2 @@
 object @event
-attributes :id, :description
+attributes :id, :description, :created_at

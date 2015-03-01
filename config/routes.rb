@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   
   # API routes
   namespace :api, defaults: {format: 'json'} do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :events
+      resources :tags
+      resources :hunters
     end
-    scope module: :v1, constraints: ApiConstraints.new(version: 2, default: true) do
-      resources :events
-    end
+    #scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
+      #resources :events
+    #end
   end
   
   # Registration routes
