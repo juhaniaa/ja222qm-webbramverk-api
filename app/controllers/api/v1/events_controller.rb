@@ -3,7 +3,12 @@ module Api
     class EventsController < ApplicationController # Api::BaseController
       before_filter :restrict_access
       
-      def index        
+      def index
+        @events = Event.all
+      end
+      
+      def show
+        @event = Event.find(params[:id])
       end
       
       def create

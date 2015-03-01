@@ -1,3 +1,3 @@
 collection @events
 
-extends "events/show"
+extends "api/v1/events/show"
