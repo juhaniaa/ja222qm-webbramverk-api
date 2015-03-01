@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   # API routes
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :events
-      resources :tags
-      resources :hunters
+      resources :events        
+      resources :tags do
+        resources :events, only: [:index]
+      end
+      resources :hunters do
+        resources :events, only: [:index]
+      end
     end
     #scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
       #resources :events
@@ -30,8 +34,7 @@ Rails.application.routes.draw do
   get 'login_admin' => 'sessions#new_admin' # show admin login-form
   post 'login_admin' => 'sessions#create_admin' # do login admin
   get 'logout_admin' => 'sessions#destroy_admin' # do logout admin - requires logged
-  resources :admins, only: [:show, :index] # show specific admin
-  #get 'remove_key_by_admin' => 'keys#destroy_by_admin' # admin removes apikey
+  resources :admins, only: [:show, :index] # show specific admin  
   get  "keys/remove/:id" => "keys#destroy_by_admin", as: :remove_key_by_admin # admin removes a users apikey
   
   

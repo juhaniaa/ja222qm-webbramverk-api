@@ -4,8 +4,16 @@ module Api
       before_filter :restrict_access
             
       def index # latest first
-        @events = Event.all.sort_by{ |a| a[:created_at] }.reverse
-      end
+        if params[:tag_id].present?
+          @tag = Tag.find(params[:tag_id])
+          @events = @tag.events
+        elsif params[:hunter_id].present?
+          @hunter = Hunter.find(params[:hunter_id])
+          @events = @hunter.events
+        else
+          @events = Event.all.sort_by{ |a| a[:created_at] }.reverse
+        end
+      end                  
       
       def show
         @event = Event.find(params[:id])
