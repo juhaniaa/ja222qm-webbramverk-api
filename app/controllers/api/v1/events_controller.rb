@@ -47,10 +47,8 @@ module Api
         @events = Event.where('description like ?', query_param).limit(@limit).offset(@offset)                
         render(:file => 'api/v1/events/index.json.rabl')
       end
-      
-      
-      def create  
-        
+            
+      def create          
         # { "event":
         #  {
         #    "description": "I am sooo happy",  
@@ -81,12 +79,13 @@ module Api
         @event.position = @position                        
         
         # for each tag in params
-        tags_p[:tags].each do |t| 
-          ## chekc if exists else create it
-          
-          
-          # add all tags to event 
-          @event.tags << Tag.create(t)       
+        tags_p[:tags].each do |t|                      
+          tag = Tag.find_by(t)
+          if tag # check if exists
+            @event.tags << tag
+          else # else create it             
+            @event.tags << Tag.create(t)       
+          end                    
         end        
         
         # add event to Hunter
