@@ -9,7 +9,7 @@
 <ul>
   <% @keys.each do |k| %>
   
-  <li><%= k.key %> - <%= k.user_id %> <%= link_to "Remove key", remove_key_by_admin_path(k.user_id) %></li>
+  <li>api-key -> <%= k.key %> - user -> <%= k.user_id %> <%= link_to "Remove key", remove_key_by_admin_path(k.user_id) %></li>
   <% end %>
 </ul>
 

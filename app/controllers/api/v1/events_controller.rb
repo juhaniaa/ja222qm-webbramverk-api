@@ -18,7 +18,11 @@ module Api
       end                     
       
       def show
-        @event = Event.find(params[:id])
+        @event = Event.find_by_id(params[:id])
+        unless @event
+          error = ErrorMessage.new("Could not find the resource. Does it exist?", "Could not find the resource!" )
+          render json: error, status: :bad_request
+        end
       end
       
       def nearby        
