@@ -3,7 +3,7 @@ module Api
     class EventsController < ApiController # Api::BaseController
       before_filter :restrict_access # make sure valid client access_token is present
       before_action :offset_params, only: [:index] # check offset and limit params
-      before_action :api_authenticate, only: [:create] # authenticate hunter to modify information
+      before_action :api_authenticate, only: [:create, :update] # authenticate hunter to modify information
             
       def index # latest first
         if params[:tag_id].present?
@@ -99,7 +99,27 @@ module Api
           error = ErrorMessage.new("Could not create the resource. Bad parameters?", "Could not create the resource!" )
           render json: error, status: :bad_request
         end
-      end      
+      end   
+      
+      def update # events/:id                           
+        # check if hunter is owner of chosen event
+        hunter = Hunter.find(@token_payload[0]["hunter_id"])
+        if hunter.events.find_by_id(params[:id])        
+          update_params = event_params[:description]
+
+          @event = Event.find(params[:id])
+          if @event.update(description: update_params)
+            render(:file => 'api/v1/events/show.json.rabl')
+          else
+            error = ErrorMessage.new("Could not update the resource. Bad parameters?", "Could not update the resource!" )
+            render json: error, status: :bad_request
+          end
+        else
+          error = ErrorMessage.new("Could not update the resource. Hunter does not have access!", "Could not update the resource!" )
+          render json: error, status: :unauthorized
+        end
+       
+      end
       
       private            
       
