@@ -1,8 +1,9 @@
 module Api
   module V1    
     class EventsController < ApiController # Api::BaseController
-      before_filter :restrict_access
-      before_action :offset_params, only: [:index]
+      before_filter :restrict_access # make sure valid client access_token is present
+      before_action :offset_params, only: [:index] # check offset and limit params
+      before_action :api_authenticate, only: [:create] # authenticate hunter to modify information
             
       def index # latest first
         if params[:tag_id].present?
@@ -48,11 +49,65 @@ module Api
       end
       
       
-      def create
+      def create  
+        
+        # { "event":
+        #  {
+        #    "description": "I am sooo happy",  
+        #    "position_attributes":
+        #      {
+        #        "lat": 60.207225,
+        #        "lng": 20.269015
+        #      }
+        #    "tags": 
+        #      [
+        #        { tagName: "Cool"},
+        #        { tagName: "Wooow"},
+        #        { tagName: "Nice"}
+        #      ]
+        #   }
+        # } 
+        
+        post_attributes = event_params
+        event_p = post_attributes.delete("description")
+        position_p = post_attributes.delete("position_attributes")
+        tags_p = post_attributes
+        
+        # create event
+        @event = Event.new(description: event_p)
+        
+        # create and add position
+        @position = Position.create(position_p)        
+        @event.position = @position                        
+        
+        # for each tag in params
+        tags_p[:tags].each do |t| 
+          ## chekc if exists else create it
+          
+          
+          # add all tags to event 
+          @event.tags << Tag.create(t)       
+        end        
+        
+        # add event to Hunter
+        hunter = Hunter.find(@token_payload[0]["hunter_id"])
+        hunter.events << @event        
+
+        # save and render result
+        if @event.save
+          render(:file => 'api/v1/events/show.json.rabl')
+        else
+          error = ErrorMessage.new("Could not create the resource. Bad parameters?", "Could not create the resource!" )
+          render json: error, status: :bad_request
+        end
+      end      
+      
+      private            
+      
+      def event_params
+        json_params = ActionController::Parameters.new( JSON.parse(request.body.read) )
+        json_params.require(:event).permit(:description, position_attributes: [:lat, :lng], :tags => [:tagName])
       end
-      
-      
-      private
       
       def restrict_access
         authenticate_or_request_with_http_token do |token, options|
@@ -60,6 +115,7 @@ module Api
         end
       end      
     end
+    
     class ErrorMessage
       def initialize(dev_mess, usr_mess)
       
@@ -67,5 +123,6 @@ module Api
       @userMessage = usr_mess
      end
     end
+    
   end
 end

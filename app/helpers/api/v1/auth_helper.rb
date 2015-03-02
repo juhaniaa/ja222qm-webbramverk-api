@@ -6,7 +6,7 @@ module Api::V1::AuthHelper
     if request.headers["Authorization"].present?
       # Take the last part in The header (ignore Bearer)
       auth_header = request.headers['Authorization'].split(' ').last
-      # Are we feeling alright!?
+
       @token_payload = decodeJWT auth_header.strip
       if !@token_payload
         render json: { error: 'The provided token wasn´t correct' }, status: :bad_request 
@@ -17,9 +17,9 @@ module Api::V1::AuthHelper
   end
   
   # This method is for encoding the JWT before sending it out
-  def encodeJWT(user, exp=2.hours.from_now)
+  def encodeJWT(hunter, exp=2.hours.from_now)
     # add the expire to the payload, as an integer
-    payload = { user_id: user.id }
+    payload = { hunter_id: hunter.id }
     payload[:exp] = exp.to_i
     
     # Encode the payload with the application secret, and a more advanced hash method (creates header with JWT gem)
