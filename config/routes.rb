@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       
-      post '/auth' => 'sessions#api_auth' # jwt authentication
+      post '/auth' => 'auth#api_auth' # jwt authentication
       
       get 'events/nearby' => 'events#nearby' # get events close to a point, requires params :lat, :lng
       get 'events/query' => 'events#query' # get events on search

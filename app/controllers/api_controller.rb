@@ -1,5 +1,7 @@
 class ApiController < ActionController::Base
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :null_session   
+  
+  include Api::V1::AuthHelper  
   
   # default parameters
   OFFSET = 0

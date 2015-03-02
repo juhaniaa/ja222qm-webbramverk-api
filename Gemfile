@@ -26,3 +26,6 @@ gem 'bcrypt', '~> 3.1.9'
 gem 'geokit'
 gem 'geokit-rails'
 
+# json token for authentication of hunters
+gem 'jwt'
+
