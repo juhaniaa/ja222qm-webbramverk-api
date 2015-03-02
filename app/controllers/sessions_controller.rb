@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController  
+  protect_from_forgery :except => [:api_auth]
 
-  ### User
-  
+  ### User  
   def new # show login-form    
   end
   
@@ -40,5 +40,16 @@ class SessionsController < ApplicationController
   def destroy_admin
     log_out_admin # session helper
     redirect_to root_path, notice: "Log out succesfull"
+  end
+  
+  # Hunter
+  
+  def api_auth
+    @hunter = Hunter.find_by(email: params[:email].downcase)
+    if @hunter && @hunter.authenticate(params[:password])      
+      render json: { auth_token: encodeJWT(@hunter) }
+    else
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
+    end    
   end
 end

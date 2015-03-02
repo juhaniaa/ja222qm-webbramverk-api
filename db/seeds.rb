@@ -23,11 +23,11 @@ Admin.create(email: "admin3@test.se", password: "qwe123")
 
 ### Positions for Events
 
-p1 = Position.create(latitude: 60.119505, longitude: 19.940895)
-p2 = Position.create(latitude: 60.101695, longitude: 19.944775)
-p3 = Position.create(latitude: 60.241155, longitude: 19.544945)
-p4 = Position.create(latitude: 60.395005, longitude: 19.802605)
-p5 = Position.create(latitude: 60.207225, longitude: 20.269015)
+p1 = Position.create(lat: 60.119505, lng: 19.940895)
+p2 = Position.create(lat: 60.101695, lng: 19.944775)
+p3 = Position.create(lat: 60.241155, lng: 19.544945)
+p4 = Position.create(lat: 60.395005, lng: 19.802605)
+p5 = Position.create(lat: 60.207225, lng: 20.269015)
 
 ### Tags for Events
 
@@ -64,11 +64,11 @@ e4.tags << t5
 
 ### Hunters
 
-h1 = Hunter.create(name: "hunter1")
-h2 = Hunter.create(name: "hunter2")
-h3 = Hunter.create(name: "hunter3")
-h4 = Hunter.create(name: "hunter4")
-h5 = Hunter.create(name: "hunter5")
+h1 = Hunter.create(name: "hunter1", email: "hunter1@test.se", password: "asd123")
+h2 = Hunter.create(name: "hunter2", email: "hunter2@test.se", password: "asd123")
+h3 = Hunter.create(name: "hunter3", email: "hunter3@test.se", password: "asd123")
+h4 = Hunter.create(name: "hunter4", email: "hunter4@test.se", password: "asd123")
+h5 = Hunter.create(name: "hunter5", email: "hunter5@test.se", password: "asd123")
 
 h1.events << e1
 h2.events << e2

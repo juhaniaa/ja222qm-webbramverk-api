@@ -14,8 +14,7 @@ module Api
         else
           @events = Event.limit(@limit).offset(@offset).sort_by{ |a| a[:created_at] }.reverse
         end
-      end               
-      
+      end                     
       
       def show
         @event = Event.find(params[:id])
@@ -63,7 +62,7 @@ module Api
     end
     class ErrorMessage
       def initialize(dev_mess, usr_mess)
-      # This is going to be json...camelcase
+      
       @developerMessage = dev_mess
       @userMessage = usr_mess
      end
