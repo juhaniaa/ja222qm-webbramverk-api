@@ -3,7 +3,7 @@ module Api
     class EventsController < ApiController # Api::BaseController
       before_filter :restrict_access # make sure valid client access_token is present
       before_action :offset_params, only: [:index] # check offset and limit params
-      before_action :api_authenticate, only: [:create, :update] # authenticate hunter to modify information
+      before_action :api_authenticate, only: [:create, :update, :destroy] # authenticate hunter to modify information
             
       def index # latest first
         if params[:tag_id].present?
@@ -117,8 +117,25 @@ module Api
         else
           error = ErrorMessage.new("Could not update the resource. Hunter does not have access!", "Could not update the resource!" )
           render json: error, status: :unauthorized
-        end
-       
+        end       
+      end
+      
+      def destroy
+        # check if hunter is owner of chosen event
+        hunter = Hunter.find(@token_payload[0]["hunter_id"])
+        if hunter.events.find_by_id(params[:id])            
+
+          @event = Event.find(params[:id])
+          if @event.destroy
+            render json: { poof: "gone" }
+          else
+            error = ErrorMessage.new("Could not remove the resource. Bad parameters?", "Could not remove the resource!" )
+            render json: error, status: :bad_request
+          end
+        else
+          error = ErrorMessage.new("Could not remove the resource. Either resource does not exist or Hunter does not have access!", "Could not remove the resource!" )
+          render json: error, status: :unauthorized
+        end   
       end
       
       private            
