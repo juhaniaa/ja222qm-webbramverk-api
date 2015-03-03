@@ -4,7 +4,7 @@ module Api
       before_filter :restrict_access # make sure valid client access_token is present
       before_action :offset_params, only: [:index] # check offset and limit params
       before_action :api_authenticate, only: [:create, :update, :destroy] # authenticate hunter to modify information
-            
+
       def index # latest first
         if params[:tag_id].present?
           @tag = Tag.find(params[:tag_id])

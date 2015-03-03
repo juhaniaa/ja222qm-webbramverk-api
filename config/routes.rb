@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       resources :hunters do
         resources :events, only: [:index] # hunters/1/events
       end
+
+      resources :hunters
   
     end
     #scope module: :v2, constraints: ApiConstraints.new(version: 2, default: true) do
