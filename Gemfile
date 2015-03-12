@@ -32,3 +32,6 @@ gem 'jwt'
 # windows timezone info
 gem 'tzinfo-data'
 
+# cross-origin resource sharing
+gem 'rack-cors'
+

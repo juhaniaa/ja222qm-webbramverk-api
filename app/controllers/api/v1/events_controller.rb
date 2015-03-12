@@ -151,6 +151,7 @@ module Api
       
       def restrict_access
         authenticate_or_request_with_http_token do |token, options|
+          puts token
           Apikey.exists?(key: token)
         end
       end      
