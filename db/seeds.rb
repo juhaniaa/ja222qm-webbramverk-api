@@ -31,11 +31,11 @@ p5 = Position.create(lat: 60.207225, lng: 20.269015)
 
 ### Tags for Events
 
-t1 = Tag.create(tagName: "Sweg")
-t2 = Tag.create(tagName: "Yolo")
-t3 = Tag.create(tagName: "Fishy")
-t4 = Tag.create(tagName: "Biggy")
-t5 = Tag.create(tagName: "Tiny")
+t1 = Tag.create(name: "Sweg")
+t2 = Tag.create(name: "Yolo")
+t3 = Tag.create(name: "Fishy")
+t4 = Tag.create(name: "Biggy")
+t5 = Tag.create(name: "Tiny")
 
 ### Events for Hunters
 

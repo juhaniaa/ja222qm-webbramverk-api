@@ -17,6 +17,6 @@ child :position do |p|
 end
 
 child :tags do
-  attributes :tagName
+  attributes :name
 end
 

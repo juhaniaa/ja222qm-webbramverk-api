@@ -63,9 +63,9 @@ module Api
         #      }
         #    "tags": 
         #      [
-        #        { tagName: "Cool"},
-        #        { tagName: "Wooow"},
-        #        { tagName: "Nice"}
+        #        { name: "Cool"},
+        #        { name: "Wooow"},
+        #        { name: "Nice"}
         #      ]
         #   }
         # } 
@@ -146,7 +146,7 @@ module Api
       
       def event_params
         json_params = ActionController::Parameters.new( JSON.parse(request.body.read) )
-        json_params.require(:event).permit(:description, position_attributes: [:lat, :lng], :tags => [:tagName])
+        json_params.require(:event).permit(:description, position_attributes: [:lat, :lng], :tags => [:name])
       end
       
       def restrict_access

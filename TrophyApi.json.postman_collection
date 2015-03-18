@@ -273,13 +273,13 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425368698851,
+			"time": 1426674803095,
 			"name": "putUpdateEvent",
 			"description": "",
 			"collectionId": "1156fd78-be54-05d3-6707-309ca760389f",
 			"responses": [],
 			"synced": false,
-			"rawModeData": "\r\n { \"event\":\r\n  {\r\n   \"description\": \"Are you really sooo happY?\", \r\n    \"position_attributes\": {\r\n    \"lat\": 60.207225,\r\n    \"lng\": 20.269015\r\n    },\r\n    \"tags\": \r\n        [\r\n            {\"tagName\": \"yolo\"},\r\n            {\"tagName\": \"haha\"},\r\n            {\"tagName\": \"rekt\"}\r\n        ]\r\n   }\r\n }"
+			"rawModeData": "\r\n { \"event\":\r\n  {\r\n   \"description\": \"Are you really sooo happY?\", \r\n    \"position_attributes\": {\r\n    \"lat\": 60.207225,\r\n    \"lng\": 20.269015\r\n    },\r\n    \"tags\": \r\n        [\r\n            {\"name\": \"yolo\"},\r\n            {\"name\": \"haha\"},\r\n            {\"name\": \"rekt\"}\r\n        ]\r\n   }\r\n }"
 		},
 		{
 			"id": "f76a568e-4915-3cd6-bc0f-f92ed980b98d",
@@ -327,13 +327,13 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425368061620,
+			"time": 1426674793116,
 			"name": "postCreateEvent",
 			"description": "",
 			"collectionId": "1156fd78-be54-05d3-6707-309ca760389f",
 			"responses": [],
 			"synced": false,
-			"rawModeData": "\r\n { \"event\":\r\n  {\r\n   \"description\": \"I am still happy\", \r\n    \"position_attributes\": {\r\n    \"lat\": 60.207225,\r\n    \"lng\": 20.269015\r\n    },\r\n    \"tags\": \r\n        [\r\n            {\"tagName\": \"yolo\"},\r\n            {\"tagName\": \"haha\"},\r\n            {\"tagName\": \"rekt\"}\r\n        ]\r\n   }\r\n }"
+			"rawModeData": "\r\n { \"event\":\r\n  {\r\n   \"description\": \"I am still happy\", \r\n    \"position_attributes\": {\r\n    \"lat\": 60.207225,\r\n    \"lng\": 20.269015\r\n    },\r\n    \"tags\": \r\n        [\r\n            {\"name\": \"yolo\"},\r\n            {\"name\": \"haha\"},\r\n            {\"name\": \"rekt\"}\r\n        ]\r\n   }\r\n }"
 		},
 		{
 			"id": "fc5e33f7-2390-b62c-58b0-6dbe340a367d",
