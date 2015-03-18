@@ -8,10 +8,10 @@ module Api
       def index # latest first
         if params[:tag_id].present?
           @tag = Tag.find(params[:tag_id])
-          @events = @tag.events
+          @events = @tag.events.limit(@limit).offset(@offset).sort_by{ |a| a[:created_at] }.reverse
         elsif params[:hunter_id].present?
           @hunter = Hunter.find(params[:hunter_id])
-          @events = @hunter.events
+          @events = @hunter.events.limit(@limit).offset(@offset).sort_by{ |a| a[:created_at] }.reverse
         else
           @events = Event.limit(@limit).offset(@offset).sort_by{ |a| a[:created_at] }.reverse
         end
