@@ -3,9 +3,9 @@ module Api::V1::AuthHelper
   
   # This is a callback which actions will call if protected
   def api_authenticate 
-    if request.headers["Authorization"].present?
+    if request.headers["X-JWT"].present?
       # Take the last part in The header (ignore Bearer)
-      auth_header = request.headers['Authorization'].split(' ').last
+      auth_header = request.headers['X-JWT'].split(' ').last
 
       @token_payload = decodeJWT auth_header.strip
 
@@ -13,7 +13,7 @@ module Api::V1::AuthHelper
         render json: { error: 'The provided token wasn´t correct' }, status: :bad_request
       end
     else
-      render json: { error: 'Need to include the Authorization header' }, status: :forbidden # The header isn´t present
+      render json: { error: 'Need to include the X-JWT header' }, status: :forbidden # The header isn´t present
     end
   end
   
