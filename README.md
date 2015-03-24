@@ -1,5 +1,11 @@
 # ja222qm-webbramverk-api
 
+## Description
+
+Welcome to trophyApi!
+With the help of this awesome service a registered developer is able to create their own clientapplications against the trophyApi. Thus giving access to all events where bragging is made by registered hunter of their epic hunting skills.
+Enjoy!
+
 ## Setup
 
 1. Clone repository
