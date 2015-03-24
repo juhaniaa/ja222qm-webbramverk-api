@@ -69,7 +69,8 @@ module Api
         #      ]
         #   }
         # } 
-        
+
+
         post_attributes = event_params
         event_p = post_attributes.delete("description")
         position_p = post_attributes.delete("position_attributes")
@@ -108,7 +109,7 @@ module Api
       def update # events/:id                           
         # check if hunter is owner of chosen event
         hunter = Hunter.find(@token_payload[0]["hunter_id"])
-        if hunter.events.find_by_id(params[:id])        
+        if hunter.events.find_by_id(params[:id])
           update_params = event_params[:description]
 
           @event = Event.find(params[:id])

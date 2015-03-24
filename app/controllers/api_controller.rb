@@ -5,7 +5,7 @@ class ApiController < ActionController::Base
   
   # default parameters
   OFFSET = 0
-  LIMIT = 20
+  LIMIT = 9999
 
   # check offset/limit
   def offset_params
